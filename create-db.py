@@ -53,7 +53,7 @@ def create_player_table(data, cur, conn, i):
         if player[1]['TEAM_ABBREVIATION'] == 'TOT':
             data.remove(player)
 
-    cur.execute("CREATE TABLE IF NOT EXISTS nba_players (team_id INTEGER, name TEXT, gp INTEGER, reb INTEGER, ast INTEGER, pts INTEGER)")
+    cur.execute("CREATE TABLE IF NOT EXISTS nba_players (team_id INTEGER, name TEXT, threes INTEGER)")
     cur.execute("SELECT id FROM nba_teams")
     lst = []
     for j in cur:
@@ -65,7 +65,7 @@ def create_player_table(data, cur, conn, i):
                 player = data[i]
                 if id_ == data[i][1]['TEAM_ID']:
                     team_id = id_ 
-            cur.execute("INSERT INTO nba_players (team_id,name,gp,reb,ast,pts) VALUES (?,?,?,?,?,?)", (team_id, data[i][0], data[i][1]['GP'], data[i][1]['REB'], data[i][1]['AST'], data[i][1]['PTS'],))
+            cur.execute("INSERT INTO nba_players (team_id,name,threes) VALUES (?,?,?)", (team_id, data[i][0], data[i][1]['FG3M'],))
         except:
             break
         i += 1
@@ -106,7 +106,7 @@ def main():
     d2 = read_Data_From_File('TEAM_STATS.txt')
     city_lines = read_list_from_file('Cities.csv')
     value_lines = read_list_from_file('NetWorths.csv')
-    #create_player_table(d, cur, conn, 575) #Each time this code runs increase i by 25
+    #create_player_table(d, cur, conn, 550) #Each time this code runs increase i by 25
     #create_team_table(d2, cur, conn, 25) #Each time this code runs increase i by 25
     #create_city_table(city_lines, cur, conn, 125)
     #create_Net_worth_table(value_lines, cur, conn, 100)
