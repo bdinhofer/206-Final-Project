@@ -58,7 +58,7 @@ def create_player_table(data, cur, conn, i):
     lst = []
     for j in cur:
         lst.append(int(j[0]))
-    print(lst)
+
     while True:
         try:
             for id_ in lst:
@@ -100,21 +100,18 @@ def create_Net_worth_table(lines, cur, conn, i):
     conn.commit()
     return None
                                                           
-def main1():
+def main():
     cur, conn = set_up_db('Final-Data.db')
     d = read_Data_From_File('PLAYER_STATS.txt')
     d2 = read_Data_From_File('TEAM_STATS.txt')
-    create_player_table(d, cur, conn, 0) #Each time this code runs increase i by 25
-    #create_team_table(d2, cur, conn, 0) #Each time this code runs increase i by 25
-
-def main2():
-    cur, conn = set_up_db('Final-Data.db')
     city_lines = read_list_from_file('Cities.csv')
-    create_city_table(city_lines, cur, conn, 125) #Each time this code runs increase i by 25
-    #value_lines = read_list_from_file('NetWorths.csv')
-    #create_Net_worth_table(value_lines, cur, conn, 100) #Each time this code runs increase i by 25
+    value_lines = read_list_from_file('NetWorths.csv')
+    #create_player_table(d, cur, conn, 575) #Each time this code runs increase i by 25
+    #create_team_table(d2, cur, conn, 25) #Each time this code runs increase i by 25
+    #create_city_table(city_lines, cur, conn, 125)
+    create_Net_worth_table(value_lines, cur, conn, 100)
 
-main1()
+main()
 
 
 
