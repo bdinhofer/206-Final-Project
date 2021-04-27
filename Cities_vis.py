@@ -162,13 +162,11 @@ def bar_graph(x, y):
     plt.style.use('seaborn-pastel')
     fig = plt.figure(figsize=(30,7.5))
     ax = fig.add_subplot(111)
-    ax.set_xlabel('City')
-    ax.set_ylabel('Win Percentage')
+    ax.set_xlabel('Win Percentage')
+    ax.set_ylabel('City')
     ax.set_title('Win Percentage by City')
     ax.barh(x, y)
     plt.show()
-
-
 
 def main():
     conn = sqlite3.connect('Final-Data.db')
@@ -185,9 +183,9 @@ def main():
     first_viz_dict = get_average_net(teams_in_city)
     first_viz_dict = add_pop(pop_lst, first_viz_dict)
     x, y, z = get_viz_lists(first_viz_dict)
-    scatter_plt(x, y, z, pop_lst)
+    #scatter_plt(x, y, z, pop_lst)
     x2, y2, = get_win(conn, cur)
-    #bar_graph(x2, y2)
+    bar_graph(x2, y2)
     conn.close()
 
 main()
