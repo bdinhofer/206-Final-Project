@@ -22,9 +22,14 @@ def process_data(stats):
     return teams, threes
 
 def bar_graph(x, y):
-    fig = plt.figure(figsize=(100,10))
+    plt.style.use('seaborn-pastel')
+    fig = plt.figure(figsize=(30,7.5))
     ax = fig.add_subplot(111)
     ax.barh(x, y)
+    ax.set_xlabel('3 Point FG Made')
+    ax.set_ylabel('Team Ranked by Win % (Top to Bottom)')
+    ax.set_title('Total 3 Point FG Made 2019-2020')
+    ax.grid('True', linewidth=.1)
     plt.show()
     
 
@@ -35,6 +40,7 @@ def main():
     lst = grab_data(cur, conn)
     x, y = process_data(lst)
     bar_graph(x, y)
+    conn.close()
 
     
 
