@@ -54,8 +54,7 @@ def most_valuable_MLB(url):
         name = tag.text.split(',')
         if len(name) > 1:
             mlb_teams.append((name[0], name[1]))
-    print(mlb_teams.index(('New York Yankees', ' $5.250 billion')))
-    return mlb_teams[2:]
+    return mlb_teams
 
 def create_list(list1, list2, list3, list4):
     sports = [list1, list2, list3, list4]
@@ -78,6 +77,8 @@ def write_to_file():
     f.close()
 
 write_to_file()
+
+
 
 
 
