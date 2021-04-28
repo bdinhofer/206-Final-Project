@@ -3,8 +3,6 @@ import requests
 import json
 import time
 
-#calls to the API and returns a dictionary in which the keys are players 
-# and the values are dictionaries of their regular season statistics 
 def get_player_stats():
     from nba_api.stats.static import players
     from nba_api.stats.endpoints import playerprofilev2
@@ -26,8 +24,6 @@ def get_player_stats():
     f.close()
     return season_stats_2019
 
-#calls to the API and returns a dictionary in which the keys are teams 
-#and the values are dictionaries of their  regular season statistics 
 def get_team_stats():
     from nba_api.stats.static import teams
     from nba_api.stats.endpoints import teamyearbyyearstats
