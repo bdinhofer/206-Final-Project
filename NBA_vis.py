@@ -51,9 +51,9 @@ def main():
     cur = conn.cursor()
     lst = grab_data(cur, conn)
     x, y, wins = process_data(lst)
-    bar_graph(x, y)
+    #bar_graph(x, y) #uncomment to create bar graph
     conn.close()
-    #write_data_to_csv('nba_vis_data.csv', x, y, wins)
+    #write_data_to_csv('nba_vis_data.csv', x, y, wins) #uncomment to create csv file
 
 
     
