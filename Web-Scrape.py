@@ -60,7 +60,6 @@ def create_list(list1, list2, list3, list4):
     sports = [list1, list2, list3, list4]
     teams_list = []
     for lst in sports:
-        #print(lst)
         teams_list.extend(lst)
     return teams_list
 
