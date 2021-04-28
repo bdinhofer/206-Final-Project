@@ -14,12 +14,14 @@ def process_data(stats):
     
     teams_by_winpct = sorted(teams_by_winpct.items(), key=lambda x: x[1])
     teams = []
+    winpcts = []
     for team in teams_by_winpct:
         teams.append(team[0])
+        winpcts.append(team[1])
     threes = []
     for team in teams:
         threes.append(team_tot_3s[team])
-    return teams, threes
+    return teams, threes, winpcts
 
 def bar_graph(x, y):
     plt.style.use('seaborn-pastel')
@@ -31,6 +33,16 @@ def bar_graph(x, y):
     ax.set_title('Total 3 Point FG Made 2019-2020')
     ax.grid('True', linewidth=.1)
     plt.show()
+
+def write_data_to_csv(filename, x, y, wins):
+    f = open(filename, 'w')
+    f.write('team,total3s,win%\n')
+    for i in range(len(x)):
+        f.write(str(x[i]) + ',' + str(y[i]) + ',' + str(wins[i]) + '\n')
+    f.write('\n')
+    f.close()
+    return None
+    
     
 
 
@@ -38,9 +50,11 @@ def main():
     conn = sqlite3.connect('Final-Data.db')
     cur = conn.cursor()
     lst = grab_data(cur, conn)
-    x, y = process_data(lst)
+    x, y, wins = process_data(lst)
     bar_graph(x, y)
     conn.close()
+    #write_data_to_csv('nba_vis_data.csv', x, y, wins)
+
 
     
 
