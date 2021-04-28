@@ -30,14 +30,14 @@ def convert_str(conn, cur):
 def get_in_city_dict(lst, conn, cur):
     cur.execute("SELECT city_name FROM Cities")
     cities = cur.fetchall()
-    net_worth_d = {}
+    d = {}
     for city in cities:
         for tup in lst:
             if city[0] in tup[0]:
-                if city[0] not in net_worth_d:
-                    net_worth_d[city[0]] = []
-                net_worth_d[city[0]].append(tup)
-    return net_worth_d
+                if city[0] not in d:
+                    d[city[0]] = []
+                d[city[0]].append(tup)
+    return d
 
 def find_not_city(clean_lst, teams_in_city):
     not_in_cities = []
