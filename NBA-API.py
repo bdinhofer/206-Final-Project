@@ -52,6 +52,7 @@ def get_team_stats():
 
 
 def main():
+    get_player_stats()
     get_team_stats()
 
 main()
