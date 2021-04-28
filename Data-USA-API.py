@@ -40,7 +40,7 @@ def sort_pop_list(lst, tup):
     return sorted_lst[:150]
 
 def write_to_file():
-    city_pops = (get_city_populations())
+    city_pops = get_city_populations()
     tor_tuple = (get_pop_toronto())
     full_list = sort_pop_list(city_pops, tor_tuple)
     f = open('Cities.csv', 'w')
