@@ -14,13 +14,12 @@ def get_city_populations():
         pop_list.append((city['Place'], city['Population']))
     return pop_list
 
-#Need to use webscraping to find Toronto's popu
+#Need to use webscraping to find Toronto's population
 def get_pop_toronto():
     r = requests.get('https://en.wikipedia.org/wiki/List_of_the_100_largest_municipalities_in_Canada_by_population')
     soup = BeautifulSoup(r.text, 'html.parser')
     table = soup.find('tbody')
     row1 = table.find('tr').find_next('tr')
-    #print(row1)
     cols = row1.find_all('td')
     pop = cols[8].text
     print(pop)
