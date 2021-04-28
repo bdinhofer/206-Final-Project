@@ -189,23 +189,19 @@ def write_data_to_csv(filename, x, y, z, x2, y2, num):
 def main():
     conn = sqlite3.connect('Final-Data.db')
     cur = conn.cursor()
-    clean_lst = convert_str(conn, cur)
-    #print(clean_lst)
-    teams_in_city = get_in_city_dict(clean_lst, conn, cur)
-    #print(teams_in_city)
-    not_in_cities = find_not_city(clean_lst, teams_in_city)
-    #print(not_in_cities)
-    teams_in_city = change_team_name(not_in_cities, teams_in_city)
-    #print(teams_in_city)
-    pop_lst = get_population(conn, cur)
-    first_viz_dict = get_average_net(teams_in_city)
-    first_viz_dict = add_pop(pop_lst, first_viz_dict)
-    x, y, z = get_viz_lists(first_viz_dict)
-    #scatter_plt(x, y, z, pop_lst)
-    x2, y2, = get_win(conn, cur)
-    bar_graph(x2, y2)
+    clean_lst = convert_str(conn, cur) #creates list with Value strings changed to integers for calculations
+    teams_in_city = get_in_city_dict(clean_lst, conn, cur) #creates dictionary where cities are keys and values are list of teams that play in the city
+    not_in_cities = find_not_city(clean_lst, teams_in_city) #list of teams that don't include city where they play in their name. For Example "Arizona Coyotes"
+    teams_in_city = change_team_name(not_in_cities, teams_in_city)#updates the dictionary to now include the teams from not_in_cities
+    pop_lst = get_population(conn, cur)#list of tuples with city name as first element and population as second element
+    first_viz_dict = get_average_net(teams_in_city)#dictionary of cities with sports teams and the average value of those sports teams
+    first_viz_dict = add_pop(pop_lst, first_viz_dict)#adds city's population to the value list
+    x, y, z = get_viz_lists(first_viz_dict)#sets list of populations equal to x, list of populations equal to y and list of cities equal to z
+    #scatter_plt(x, y, z, pop_lst) #uncomment to create scatter plot
+    x2, y2, = get_win(conn, cur) # sets x2 equal to list of citites and y2 equal to that cities nba team win percentage
+    #bar_graph(x2, y2)#uncomment to create bar graph
     avg_pop = get_average_population(pop_lst) 
-    #write_data_to_csv('cities_vis_data.csv', x, y, z, x2, y2, avg_pop)
+    #write_data_to_csv('cities_vis_data.csv', x, y, z, x2, y2, avg_pop)# uncomment to create csv file
     conn.close()
 
 main()
