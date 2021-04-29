@@ -197,11 +197,11 @@ def main():
     first_viz_dict = get_average_net(teams_in_city)#dictionary of cities with sports teams and the average value of those sports teams
     first_viz_dict = add_pop(pop_lst, first_viz_dict)#adds city's population to the value list
     x, y, z = get_viz_lists(first_viz_dict)#sets list of populations equal to x, list of populations equal to y and list of cities equal to z
-    #scatter_plt(x, y, z, pop_lst) #uncomment to create scatter plot
+    scatter_plt(x, y, z, pop_lst) #uncomment to create scatter plot
     x2, y2, = get_win(conn, cur) # sets x2 equal to list of citites and y2 equal to that cities nba team win percentage
     bar_graph(x2, y2)#uncomment to create bar graph
     avg_pop = get_average_population(pop_lst) 
-    #write_data_to_csv('cities_vis_data.csv', x, y, z, x2, y2, avg_pop)# uncomment to create csv file
+    write_data_to_csv('cities_vis_data.csv', x, y, z, x2, y2, avg_pop)# uncomment to create csv file
     conn.close()
 
 main()

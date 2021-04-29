@@ -35,6 +35,7 @@ def get_team_stats():
         team_id = team['id']
         team_stats = teamyearbyyearstats.TeamYearByYearStats(team_id=team_id,league_id='00',per_mode_simple='Totals',
                                                              season_type_all_star='Regular Season')
+        print('Retrieved')
         r = json.loads(team_stats.get_normalized_json())
         for season in r['TeamStats']:
             if season['YEAR'] == '2019-20':
@@ -48,7 +49,7 @@ def get_team_stats():
 
 
 def main():
-    #get_player_stats()
+    get_player_stats()
     get_team_stats()
 
 main()
