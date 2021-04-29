@@ -106,10 +106,10 @@ def main():
     d2 = read_Data_From_File('TEAM_STATS.txt')
     city_lines = read_list_from_file('Cities.csv')
     value_lines = read_list_from_file('NetWorths.csv')
-    #create_player_table(d, cur, conn, 550) #Each time this code runs increase i by 25
-    #create_team_table(d2, cur, conn, 25) #Each time this code runs increase i by 25
-    #create_city_table(city_lines, cur, conn, 125)
-    create_Net_worth_table(value_lines, cur, conn, 100)
+    create_player_table(d, cur, conn, 0)
+    #create_team_table(d2, cur, conn, 0) 
+    #create_city_table(city_lines, cur, conn, 0)
+    #create_Net_worth_table(value_lines, cur, conn, 0)
     conn.close()
 
 main()
